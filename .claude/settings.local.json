@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "WebFetch(domain:www.statrift.com)",
+      "Bash(npm -v)",
+      "Bash(npm install *)",
+      "Bash(npm audit *)",
+      "Bash(npm run *)",
+      "Bash(npm ls *)",
+      "Bash(node -e ' *)"
+    ]
+  }
+}
