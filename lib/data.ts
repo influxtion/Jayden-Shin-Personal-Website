@@ -54,7 +54,7 @@ export const projects: Project[] = [
     meta: "League of Legends · Mini-games · 2026",
     href: "https://www.statrift.com/",
     description:
-      "Was doomscrolling tiktok and saw a bunch of league games, so i made a website for it instead of pushing masters. i'm never leaving plat dawg.",
+      "Was doomscrolling tiktok and saw a bunch of league games, so i made a website for it instead of pushing masters. i'm never leaving plat lol.",
     preview: "/statrift.webp",
     previewAlt: "StatRift homepage showing stat builder, fog of war, and higher or lower game modes.",
   },
@@ -73,16 +73,16 @@ export const funFacts: FunFact[] = [
   {
     id: "02",
     tag: "scholastic writing awards · flash fiction",
-    headline: "i write for fun.",
+    headline: "i write sometimes.",
     detail:
-      "gold at the scholastic writing and art awards for fiction. 1 of 100 nationally, and 1 of 7 gold recipients for flash fiction in canada. was published in an anthology too.",
+      "gold at the scholastic writing and art awards for fiction. 1 of 100 nationally, and 1 of 7 gold recipients for flash fiction in all of canada. i had one of my short stories published in an anthology too.",
   },
   {
     id: "03",
-    tag: "boba (not)",
-    headline: "i DON'T like boba.",
+    tag: "food",
+    headline: "i really like food.",
     detail:
-      "it's ok but idk lol. just buy me a meal bro. i'm starving just thinking about it ngl.",
+      "if you got a dish to share with me, hit me up. i cook in my spare time too! i'm starving just thinking about it ngl.",
   },
 ];
 
