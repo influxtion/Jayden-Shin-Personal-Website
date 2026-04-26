@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Jayden Shin",
   description:
-    "Incoming CS @ Waterloo. Builds software, speaks at the UN. London, ON.",
+    "Incoming Software Eng @ Waterloo. Builds software, speaks at the UN.",
   metadataBase: new URL("https://jaydenshin.com"),
   openGraph: {
     title: "Jayden Shin",
-    description: "Incoming CS @ Waterloo. Builds software, speaks at the UN.",
+    description: "Incoming Software Eng @ Waterloo. Builds software, speaks at the UN.",
     type: "website",
   },
 };

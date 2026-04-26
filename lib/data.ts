@@ -4,6 +4,7 @@ export type Experience = {
   org: string;
   location: string;
   copy: string;
+  href?: string;
 };
 
 export type Project = {
@@ -31,6 +32,7 @@ export const experience: Experience[] = [
     org: "Paradym Private Capital",
     location: "",
     copy: "Managed and maintained web and program-based algorithmic designs, overseeing over $65,000 of assets. Facilitated development of over 20% yearly returns, working with the Ivey AEO student executive team.",
+    href: "https://paradymprivatecapital.com/portfolio",
   },
   {
     year: "apr 2025 / now",
@@ -38,6 +40,7 @@ export const experience: Experience[] = [
     org: "Adopt Our Community",
     location: "",
     copy: "Managed all web development for a non-profit spanning BC, Saskatchewan, Ontario, and Washington. Directed tech operations and administrative tasks for 10+ chapters, collaborating with 19+ partners including hospitals, First Nations, and city governments.",
+    href: "https://www.adoptourcommunity.org/",
   },
   {
     year: "jun / oct 2024",
@@ -49,6 +52,20 @@ export const experience: Experience[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    title: "Newman Barbershop",
+    meta: "Concept design · Barbershop · 2026",
+    href: "https://newman-barbershop.vercel.app/",
+    description:
+      "concept design for a barbershop site. just a personal exploration — not a real client, no affiliation. wanted to play with a clean editorial layout.",
+  },
+  {
+    title: "Oakridge Barbers",
+    meta: "Concept design · Barbershop · 2026",
+    href: "https://oakridge-barbers.vercel.app/",
+    description:
+      "another barbershop concept design. fictional brand, built to experiment with type, motion, and a different visual direction than newman.",
+  },
   {
     title: "StatRift",
     meta: "League of Legends · Mini-games · 2026",

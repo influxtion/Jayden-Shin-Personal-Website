@@ -78,7 +78,19 @@ export function Experience() {
                 {e.role}
               </h3>
               <p className="mt-2 text-[15px] md:text-[16px] font-mono lowercase tracking-wide text-[color:var(--color-cobalt)] font-semibold">
-                {e.org.toLowerCase()}
+                {e.href ? (
+                  <a
+                    href={e.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 border-b border-[color:var(--color-cobalt)]/30 hover:border-[color:var(--color-cobalt)] transition-colors duration-300"
+                  >
+                    {e.org.toLowerCase()}
+                    <span aria-hidden className="text-[12px]">↗</span>
+                  </a>
+                ) : (
+                  e.org.toLowerCase()
+                )}
               </p>
               <p className="mt-5 max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-[color:var(--color-ink)]/85">
                 {e.copy}
