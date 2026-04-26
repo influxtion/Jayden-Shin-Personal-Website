@@ -51,7 +51,10 @@ export const experience: Experience[] = [
   },
 ];
 
-export const projects: Project[] = [
+// Casual version of project copy — keep this around so we can swap back later.
+// To revert: rename `projects` below to `projectsProfessional`, and rename
+// `projectsCasual` to `projects`.
+export const projectsCasual: Project[] = [
   {
     title: "Newman Barbershop",
     meta: "Concept design · Barbershop · 2026",
@@ -72,6 +75,32 @@ export const projects: Project[] = [
     href: "https://www.statrift.com/",
     description:
       "Was doomscrolling tiktok and saw a bunch of league games, so i made a website for it instead of pushing masters. i'm never leaving plat lol.",
+    preview: "/statrift.webp",
+    previewAlt: "StatRift homepage showing stat builder, fog of war, and higher or lower game modes.",
+  },
+];
+
+export const projects: Project[] = [
+  {
+    title: "Newman Barbershop",
+    meta: "Concept design · Barbershop · 2026",
+    href: "https://newman-barbershop.vercel.app/",
+    description:
+      "A concept site for a fictional barbershop, exploring a clean editorial layout. Personal project with no real client affiliation — built as a study in typography and composition.",
+  },
+  {
+    title: "Oakridge Barbers",
+    meta: "Concept design · Barbershop · 2026",
+    href: "https://oakridge-barbers.vercel.app/",
+    description:
+      "A second barbershop concept, designed to push a different visual direction than Newman through type, motion, and pacing. Fictional brand, no client affiliation.",
+  },
+  {
+    title: "StatRift",
+    meta: "League of Legends · Mini-games · 2026",
+    href: "https://www.statrift.com/",
+    description:
+      "A small web app of League of Legends mini-games — a stat builder, a fog-of-war guesser, and a higher-or-lower mode. Started as a side project to learn more about interactive game UI on the web.",
     preview: "/statrift.webp",
     previewAlt: "StatRift homepage showing stat builder, fog of war, and higher or lower game modes.",
   },
