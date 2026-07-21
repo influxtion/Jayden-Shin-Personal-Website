@@ -31,23 +31,30 @@ export const experience: Experience[] = [
     role: "Head of Technology Operations",
     org: "Paradym Private Capital",
     location: "",
-    copy: "Managed and maintained web and program-based algorithmic designs, overseeing over $65,000 of assets. Facilitated development of over 20% yearly returns, working with the Ivey AEO student executive team.",
+    copy: "Operate end-to-end technology operations for a private capital firm managing $70K+ in assets. Engineered the algorithmic and web-based systems behind 20%+ annualized returns, working alongside an Ivey AEO and Queen's Commerce executive team.",
     href: "https://paradymprivatecapital.com/portfolio",
   },
   {
-    year: "apr 2025 / now",
+    year: "apr 2025 / jun 2026",
     role: "Volunteer IT Director",
     org: "Adopt Our Community",
     location: "",
-    copy: "Managed all web development for a non-profit spanning BC, Saskatchewan, Ontario, and Washington. Directed tech operations and administrative tasks for 10+ chapters, collaborating with 19+ partners including hospitals, First Nations, and city governments.",
+    copy: "Built internal web platforms and automated data-routing systems across 10+ chapters. Coordinated with 19+ external partners — hospitals, First Nations, and city governments — to streamline logistics and drive $10K+ in fundraising outcomes.",
     href: "https://www.adoptourcommunity.org/",
+  },
+  {
+    year: "mar / nov 2025",
+    role: "Web Developer",
+    org: "Free Your Mind Initiative",
+    location: "",
+    copy: "Designed and delivered a responsive CMS web platform within a 5-member team to modernize a non-profit's digital operations. Took over site administration after launch, maintaining continuous uptime and content accuracy.",
   },
   {
     year: "jun / oct 2024",
     role: "Software Development Intern",
     org: "RookBook Sports",
     location: "",
-    copy: "Worked on the website for a football management agency in Southeast Asia under senior developers. Mentored in front-end and back-end development and Flutter programming.",
+    copy: "Built and maintained the production website for a Southeast Asian football management agency. Mentored by senior engineers, developing hands-on proficiency in Flutter-based full-stack development across front-end and back-end systems.",
   },
 ];
 
@@ -56,53 +63,49 @@ export const experience: Experience[] = [
 // `projectsCasual` to `projects`.
 export const projectsCasual: Project[] = [
   {
-    title: "Newman Barbershop",
-    meta: "Concept design · Barbershop · 2026",
-    href: "https://newman-barbershop.vercel.app/",
+    title: "Laplace",
+    meta: "Pokémon Showdown battle AI · Python · 2026",
+    href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI",
     description:
-      "concept design for a barbershop site. just a personal exploration — not a real client, no affiliation. wanted to play with a clean editorial layout.",
+      "a pokémon showdown bot that hit 2137 elo — #447 in the world, top 1% of the ladder. it guesses what team you're running, simulates ~250k playouts every 120ms on a rust engine, and picks a mixed strategy so you can't read it. it also reads your hidden items and stats off your move patterns and turn order, which is honestly rude of it. 180k+ views across social media.",
   },
   {
-    title: "Oakridge Barbers",
-    meta: "Concept design · Barbershop · 2026",
-    href: "https://oakridge-barbers.vercel.app/",
+    title: "Last Tour",
+    meta: "Chrome extension · JavaScript · 2026",
+    href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension",
     description:
-      "another barbershop concept design. fictional brand, built to experiment with type, motion, and a different visual direction than newman.",
+      "a new tab page that's just a tiny pixel city, generated fresh every time, with parallax layers and snow. all the ambience — wind, engine hum — is synthesized live in the browser, so there's not a single copyrighted asset in it. 100 users and a little journal built in.",
   },
   {
-    title: "StatRift",
-    meta: "League of Legends · Mini-games · 2026",
-    href: "https://www.statrift.com/",
+    title: "Progression Difficulty Scaler",
+    meta: "Minecraft Fabric mod · Java · 2026",
+    href: "https://github.com/influxtion/Progressive-Difficulty-Scaler",
     description:
-      "Was doomscrolling tiktok and saw a bunch of league games, so i made a website for it instead of pushing masters. i'm never leaving plat lol.",
-    preview: "/statrift.webp",
-    previewAlt: "StatRift homepage showing stat builder, fog of war, and higher or lower game modes.",
+      "a minecraft mod that quietly scores how far you've progressed — gear, dimensions, advancements, how much netherite you've dug up — and scales every mob's health and damage to match. ramps hard mid-game then eases off once you're geared. 200 downloads.",
   },
 ];
 
 export const projects: Project[] = [
   {
-    title: "Newman Barbershop",
-    meta: "Concept design · Barbershop · 2026",
-    href: "https://newman-barbershop.vercel.app/",
+    title: "Laplace",
+    meta: "Pokémon Showdown battle AI · Python · 2026",
+    href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI",
     description:
-      "A concept site for a fictional barbershop, exploring a clean editorial layout. Personal project with no real client affiliation — built as a study in typography and composition.",
+      "A competitive Pokémon Showdown AI that reached a peak 2137 Elo — ranked #447 in the world and top 1% of hundreds of thousands of human players, with 180K+ views across social media. Each turn is driven by determinized Monte Carlo Tree Search to reason under hidden information and simultaneous moves: it samples plausible opponent teams, simulates ~250K playouts per 120ms on a multithreaded Rust engine, and plays a mixed, unexploitable strategy. It deduces concealed opponent items and stats from in-game tells like move patterns and turn order, and resolves near-ties with a PyTorch value network trained on self-play labels. Every change was validated through a loss-mining and A/B self-play harness, benchmarked against the strongest open-source bot.",
   },
   {
-    title: "Oakridge Barbers",
-    meta: "Concept design · Barbershop · 2026",
-    href: "https://oakridge-barbers.vercel.app/",
+    title: "Last Tour",
+    meta: "Chrome extension · JavaScript · 2026",
+    href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension",
     description:
-      "A second barbershop concept, designed to push a different visual direction than Newman through type, motion, and pacing. Fictional brand, no client affiliation.",
+      "A Manifest V3 Chrome extension (100 users) that overrides the new-tab page with a procedural pixel-art city, rendered to a low-res offscreen canvas and nearest-neighbour upscaled, with parallax layers and runtime snowfall. All ambience is synthesized through the WebAudio API — filtered-noise wind, oscillator engine idle — alongside a chrome.storage journal and topSites integration, shipping zero copyrighted assets.",
   },
   {
-    title: "StatRift",
-    meta: "League of Legends · Mini-games · 2026",
-    href: "https://www.statrift.com/",
+    title: "Progression Difficulty Scaler",
+    meta: "Minecraft Fabric mod · Java · 2026",
+    href: "https://github.com/influxtion/Progressive-Difficulty-Scaler",
     description:
-      "A small web app of League of Legends mini-games — a stat builder, a fog-of-war guesser, and a higher-or-lower mode. Started as a side project to learn more about interactive game UI on the web.",
-    preview: "/statrift.webp",
-    previewAlt: "StatRift homepage showing stat builder, fog of war, and higher or lower game modes.",
+      "A server-side Fabric mod (200 downloads, MC 1.21.1) that hooks entity-load events to rescale each mob's max-health and attack-damage attributes on spawn against a server-wide progression average. It derives a hidden 0–100 progression score per player from gear, dimensions, advancements, and log-scaled diamond/netherite mining, mapped through a normalized logistic S-curve so difficulty ramps mid-to-late game and eases off at the top.",
   },
 ];
 
@@ -132,11 +135,11 @@ export const funFacts: FunFact[] = [
   },
 ];
 
-export const skills = ["Java", "JavaScript", "Dart", "Python"];
+export const skills = ["Java", "JavaScript", "TypeScript", "Dart", "Python", "C++"];
 
 export const meta = {
   name: "Jayden Shin",
-  bio: "Incoming CS student at Waterloo. I build things, really love food, and somehow ended up at the UN. Looking to get into the start-up and tech space.",
+  bio: "Incoming Software Engineering student at Waterloo. I build things, really love food, and somehow ended up at the UN. Looking to get into the start-up and tech space.",
   year: "2026",
   email: "jaydenshin2008@gmail.com",
   linkedin: "https://www.linkedin.com/in/jayden-shin/",
