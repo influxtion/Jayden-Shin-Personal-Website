@@ -186,7 +186,7 @@ export function Hero() {
             className="relative aspect-[3/4] w-full overflow-hidden border-2 border-[color:var(--color-ink)]"
           >
             <Image
-              src="/portrait.jpg"
+              src="/headshot_2_optimized_1000.jpg"
               alt="Portrait of Jayden Shin"
               fill
               priority
