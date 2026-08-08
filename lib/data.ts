@@ -7,13 +7,31 @@ export type Experience = {
   href?: string;
 };
 
+export type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+export type ProjectPreview = {
+  src: string;
+  alt: string;
+  /** where clicking the preview goes — the live demo or store page */
+  href: string;
+  /** animated webp: skipped by the image optimizer and swapped for `poster` under prefers-reduced-motion */
+  animated?: boolean;
+  poster?: string;
+  /** css aspect-ratio for the frame; defaults to 16 / 9 */
+  aspect?: string;
+};
+
 export type Project = {
   title: string;
   meta: string;
+  /** canonical project link, used by the title */
   href: string;
-  description: string;
-  preview?: string;
-  previewAlt?: string;
+  bullets: string[];
+  links: ProjectLink[];
+  preview?: ProjectPreview;
 };
 
 export type FunFact = {
@@ -66,22 +84,63 @@ export const projectsCasual: Project[] = [
     title: "Laplace",
     meta: "Pokémon Showdown battle AI · Python · 2026",
     href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI",
-    description:
-      "a pokémon showdown bot that hit 2137 elo — #447 in the world, top 1% of the ladder. it guesses what team you're running, simulates ~250k playouts every 120ms on a rust engine, and picks a mixed strategy so you can't read it. it also reads your hidden items and stats off your move patterns and turn order, which is honestly rude of it. 180k+ views across social media.",
+    bullets: [
+      "hit a peak 2137 elo — #447 in the world, top 1% of hundreds of thousands of human players. 200k+ views across social media.",
+      "guesses what team you're running, simulates ~250k playouts every 120ms on a rust engine, and picks a mixed strategy so you can't read it.",
+      "reads your hidden items and stats off your move patterns and turn order, which is honestly rude of it, and breaks near-ties with a pytorch value net.",
+      "every change had to beat the old version in a/b self-play before it shipped, benchmarked against the strongest open-source bot.",
+    ],
+    links: [
+      { label: "watch a battle", href: "https://replay.pokemonshowdown.com/gen9randombattle-2658612840" },
+      { label: "github", href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI" },
+    ],
+    preview: {
+      src: "/laplace-replay.webp",
+      alt: "Laplace playing a ranked Pokémon Showdown battle, turn 2 of a Gen 9 Random Battle",
+      href: "https://replay.pokemonshowdown.com/gen9randombattle-2658612840",
+      animated: true,
+      poster: "/laplace-replay-poster.webp",
+    },
   },
   {
     title: "Last Tour",
     meta: "Chrome extension · JavaScript · 2026",
     href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension",
-    description:
-      "a new tab page that's just a tiny pixel city, generated fresh every time, with parallax layers and snow. all the ambience — wind, engine hum — is synthesized live in the browser, so there's not a single copyrighted asset in it. 100 users and a little journal built in.",
+    bullets: [
+      "a new tab page that's just a tiny pixel city, generated fresh every time, with parallax layers and snow. 200 impressions on the web store.",
+      "all the ambience — wind, engine hum — is synthesized live in the browser, so there's not a single copyrighted asset in it. little journal built in too.",
+    ],
+    links: [
+      {
+        label: "chrome web store",
+        href: "https://chromewebstore.google.com/detail/last-tour-shoujo-shuumats/fpfajepgnbicdpfddfjdicneoombjgmp",
+      },
+      { label: "github", href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension" },
+    ],
+    preview: {
+      src: "/lasttour-newtab.webp",
+      alt: "The Last Tour new tab page: a procedural pixel-art city at night, with a clock and the Kettenkrad",
+      href: "https://chromewebstore.google.com/detail/last-tour-shoujo-shuumats/fpfajepgnbicdpfddfjdicneoombjgmp",
+      aspect: "16 / 10",
+    },
   },
   {
-    title: "Progression Difficulty Scaler",
+    title: "Progressive Difficulty Scaler",
     meta: "Minecraft Fabric mod · Java · 2026",
     href: "https://github.com/influxtion/Progressive-Difficulty-Scaler",
-    description:
-      "a minecraft mod that quietly scores how far you've progressed — gear, dimensions, advancements, how much netherite you've dug up — and scales every mob's health and damage to match. ramps hard mid-game then eases off once you're geared. 200 downloads.",
+    bullets: [
+      "a minecraft mod that quietly scores how far you've progressed — gear, dimensions, advancements, how much netherite you've dug up. 400 downloads.",
+      "scales every mob's health and damage to match. ramps hard mid-game then eases off once you're geared.",
+    ],
+    links: [
+      { label: "curseforge", href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler" },
+      { label: "github", href: "https://github.com/influxtion/Progressive-Difficulty-Scaler" },
+    ],
+    preview: {
+      src: "/pds-curseforge.webp",
+      alt: "Progressive Difficulty Scaler on CurseForge",
+      href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler",
+    },
   },
 ];
 
@@ -90,22 +149,63 @@ export const projects: Project[] = [
     title: "Laplace",
     meta: "Pokémon Showdown battle AI · Python · 2026",
     href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI",
-    description:
-      "A competitive Pokémon Showdown AI that reached a peak 2137 Elo — ranked #447 in the world and top 1% of hundreds of thousands of human players, with 180K+ views across social media. Each turn is driven by determinized Monte Carlo Tree Search to reason under hidden information and simultaneous moves: it samples plausible opponent teams, simulates ~250K playouts per 120ms on a multithreaded Rust engine, and plays a mixed, unexploitable strategy. It deduces concealed opponent items and stats from in-game tells like move patterns and turn order, and resolves near-ties with a PyTorch value network trained on self-play labels. Every change was validated through a loss-mining and A/B self-play harness, benchmarked against the strongest open-source bot.",
+    bullets: [
+      "Reached a peak 2137 Elo — ranked #447 in the world on the competitive ladder, top 1% among hundreds of thousands of human players; drew 200K+ views across social media.",
+      "Drives each turn with determinized Monte Carlo Tree Search to reason under hidden information and simultaneous moves: samples plausible opponent teams, simulates ~250K playouts per 120ms on a multithreaded Rust engine, and plays a mixed, unexploitable strategy.",
+      "Deduces concealed opponent items and stats from in-game tells like move patterns and turn order, and trained a PyTorch value network (368 features, self-play labels, ~70% accuracy) to resolve near-ties.",
+      "Validated every change through a loss-mining → root-cause → A/B self-play harness with Wilson confidence intervals, benchmarked against the strongest open-source bot.",
+    ],
+    links: [
+      { label: "watch a battle", href: "https://replay.pokemonshowdown.com/gen9randombattle-2658612840" },
+      { label: "github", href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI" },
+    ],
+    preview: {
+      src: "/laplace-replay.webp",
+      alt: "Laplace playing a ranked Pokémon Showdown battle, turn 2 of a Gen 9 Random Battle",
+      href: "https://replay.pokemonshowdown.com/gen9randombattle-2658612840",
+      animated: true,
+      poster: "/laplace-replay-poster.webp",
+    },
   },
   {
     title: "Last Tour",
     meta: "Chrome extension · JavaScript · 2026",
     href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension",
-    description:
-      "A Manifest V3 Chrome extension (100 users) that overrides the new-tab page with a procedural pixel-art city, rendered to a low-res offscreen canvas and nearest-neighbour upscaled, with parallax layers and runtime snowfall. All ambience is synthesized through the WebAudio API — filtered-noise wind, oscillator engine idle — alongside a chrome.storage journal and topSites integration, shipping zero copyrighted assets.",
+    bullets: [
+      "Shipped a Manifest V3 Chrome extension (200 impressions) that overrides the new-tab page with a procedural pixel-art city, rendered to a low-res offscreen canvas and nearest-neighbour upscaled, with parallax layers and runtime snowfall.",
+      "Synthesized all ambience through the WebAudio API — filtered-noise wind, oscillator engine idle — and added a chrome.storage journal and topSites integration, shipping zero copyrighted assets.",
+    ],
+    links: [
+      {
+        label: "chrome web store",
+        href: "https://chromewebstore.google.com/detail/last-tour-shoujo-shuumats/fpfajepgnbicdpfddfjdicneoombjgmp",
+      },
+      { label: "github", href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension" },
+    ],
+    preview: {
+      src: "/lasttour-newtab.webp",
+      alt: "The Last Tour new tab page: a procedural pixel-art city at night, with a clock and the Kettenkrad",
+      href: "https://chromewebstore.google.com/detail/last-tour-shoujo-shuumats/fpfajepgnbicdpfddfjdicneoombjgmp",
+      aspect: "16 / 10",
+    },
   },
   {
-    title: "Progression Difficulty Scaler",
+    title: "Progressive Difficulty Scaler",
     meta: "Minecraft Fabric mod · Java · 2026",
     href: "https://github.com/influxtion/Progressive-Difficulty-Scaler",
-    description:
-      "A server-side Fabric mod (200 downloads, MC 1.21.1) that hooks entity-load events to rescale each mob's max-health and attack-damage attributes on spawn against a server-wide progression average. It derives a hidden 0–100 progression score per player from gear, dimensions, advancements, and log-scaled diamond/netherite mining, mapped through a normalized logistic S-curve so difficulty ramps mid-to-late game and eases off at the top.",
+    bullets: [
+      "Built a server-side Fabric mod (400 downloads, MC 1.21.1) that hooks entity-load events to rescale each mob's max-health and attack-damage attributes on spawn against a server-wide progression average.",
+      "Derives a hidden 0–100 progression score per player from gear, dimensions, advancements, and log-scaled diamond/netherite mining, mapped through a normalized logistic S-curve so difficulty ramps mid-to-late game and eases at the top.",
+    ],
+    links: [
+      { label: "curseforge", href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler" },
+      { label: "github", href: "https://github.com/influxtion/Progressive-Difficulty-Scaler" },
+    ],
+    preview: {
+      src: "/pds-curseforge.webp",
+      alt: "Progressive Difficulty Scaler on CurseForge",
+      href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler",
+    },
   },
 ];
 

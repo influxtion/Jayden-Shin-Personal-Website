@@ -30,7 +30,7 @@ export function Projects() {
         </span>
       </header>
 
-      <ol className="flex flex-col gap-16 md:gap-20">
+      <ol className="flex flex-col gap-16 md:gap-24">
         {projects.map((p, i) => (
           <motion.li
             key={p.title}
@@ -38,60 +38,103 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
-            className="grid grid-cols-12 gap-6 md:gap-10 items-start"
+            className="grid grid-cols-12 gap-8 md:gap-10 items-start pb-10 border-b-2 border-white/25"
           >
-            <a
-              href={p.href}
-              target="_blank"
-              rel="noreferrer"
-              className="group col-span-12 grid grid-cols-12 gap-6 md:gap-10 items-start"
-            >
-              {/* Text side */}
-              <div
-                className={`col-span-12 ${
-                  p.preview ? "md:col-span-6" : "md:col-span-12"
-                } relative pb-8 border-b-2 border-white/25`}
-              >
-                <div className="flex items-baseline gap-4 flex-wrap">
-                  <h3 className="text-[44px] md:text-[56px] lg:text-[64px] font-semibold tracking-[-0.03em] leading-[0.95] text-white group-hover:text-[color:var(--color-lime)] transition-colors duration-400">
+            {/* Text side */}
+            <div className={`col-span-12 ${p.preview ? "md:col-span-7" : "md:col-span-12"}`}>
+              <div className="flex items-baseline gap-4 flex-wrap">
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/title inline-block"
+                >
+                  <h3 className="text-[40px] md:text-[50px] lg:text-[58px] font-semibold tracking-[-0.03em] leading-[0.95] text-white group-hover/title:text-[color:var(--color-lime)] transition-colors duration-400">
                     {p.title}
                   </h3>
-                  <span className="font-mono text-[13px] lowercase tracking-wide text-white/70">
-                    {p.meta.toLowerCase()}
-                  </span>
-                </div>
-                <p className="mt-5 text-[17px] md:text-[19px] leading-relaxed text-white/90 max-w-xl">
-                  {p.description}
-                </p>
-                <motion.span
-                  aria-hidden
-                  className="absolute left-0 right-0 bottom-0 h-[3px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  style={{ background: "var(--color-lime)" }}
-                />
-                <span className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] lowercase tracking-wide text-[color:var(--color-lime)] font-semibold">
-                  visit site
                   <span
                     aria-hidden
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
+                    className="block h-[3px] origin-left scale-x-0 group-hover/title:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    style={{ background: "var(--color-lime)" }}
+                  />
+                </a>
+                <span className="font-mono text-[13px] lowercase tracking-wide text-white/70">
+                  {p.meta.toLowerCase()}
                 </span>
               </div>
 
-              {/* Preview image */}
-              {p.preview ? (
-                <div className="col-span-12 md:col-span-6">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border-2 border-white/30 bg-[color:var(--color-ink)] group-hover:border-[color:var(--color-lime)] transition-colors duration-400">
-                    <Image
-                      src={p.preview}
-                      alt={p.previewAlt || p.title}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      quality={95}
-                      style={{ objectFit: "cover", objectPosition: "top center" }}
-                      className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+              <ul className="mt-7 flex flex-col gap-4">
+                {p.bullets.map((b) => (
+                  <li key={b} className="relative pl-6 text-[16px] md:text-[17px] leading-[1.6] text-white/90">
+                    <span
+                      aria-hidden
+                      className="absolute left-0 top-[0.6em] size-2"
+                      style={{ background: "var(--color-lime)" }}
                     />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3">
+                {p.links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group/link inline-flex items-center gap-2 font-mono text-[12px] lowercase tracking-wide text-[color:var(--color-lime)] font-semibold border-b border-[color:var(--color-lime)]/30 hover:border-[color:var(--color-lime)] transition-colors duration-300"
+                  >
+                    {l.label}
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-300 group-hover/link:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Preview media */}
+            {p.preview ? (
+              <div className="col-span-12 md:col-span-5">
+                <a
+                  href={p.preview.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/media block"
+                  aria-label={`${p.title} — open ${p.preview.animated ? "the battle replay" : "the live page"}`}
+                >
+                  <div
+                    className="relative w-full overflow-hidden border-2 border-white/30 bg-[color:var(--color-ink)] group-hover/media:border-[color:var(--color-lime)] transition-colors duration-400"
+                    style={{ aspectRatio: p.preview.aspect ?? "16 / 9" }}
+                  >
+                    <Image
+                      src={p.preview.src}
+                      alt={p.preview.alt}
+                      fill
+                      sizes="(min-width: 768px) 42vw, 100vw"
+                      quality={95}
+                      unoptimized={p.preview.animated}
+                      style={{ objectFit: "cover", objectPosition: "top center" }}
+                      className={`transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/media:scale-[1.02] ${
+                        p.preview.poster ? "motion-reduce:hidden" : ""
+                      }`}
+                    />
+                    {/* still frame for anyone who asked for less motion */}
+                    {p.preview.poster ? (
+                      <Image
+                        src={p.preview.poster}
+                        alt={p.preview.alt}
+                        fill
+                        sizes="(min-width: 768px) 42vw, 100vw"
+                        quality={95}
+                        style={{ objectFit: "cover", objectPosition: "top center" }}
+                        className="hidden motion-reduce:block"
+                      />
+                    ) : null}
                     <span
                       aria-hidden
                       className="absolute bottom-0 right-0 w-12 h-2"
@@ -103,9 +146,17 @@ export function Projects() {
                       style={{ background: "var(--color-lime)" }}
                     />
                   </div>
-                </div>
-              ) : null}
-            </a>
+                  <span className="mt-3 flex items-center gap-2 font-mono text-[11px] lowercase tracking-wide text-white/60 group-hover/media:text-[color:var(--color-lime)] transition-colors duration-300">
+                    <span
+                      aria-hidden
+                      className="size-1.5"
+                      style={{ background: "var(--color-lime)" }}
+                    />
+                    {p.preview.animated ? "live replay — click to watch the full battle" : "click to open the live page"}
+                  </span>
+                </a>
+              </div>
+            ) : null}
           </motion.li>
         ))}
       </ol>

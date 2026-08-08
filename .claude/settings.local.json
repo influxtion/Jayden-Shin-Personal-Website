@@ -10,7 +10,8 @@
       "Bash(npm ls *)",
       "Bash(node -e ' *)",
       "WebFetch(domain:github.com)",
-      "PowerShell(New-Item *)"
+      "PowerShell(New-Item *)",
+      "Bash(curl -sI \"https://replay.pokemonshowdown.com/gen9randombattle-2658612840\")"
     ]
   }
 }
