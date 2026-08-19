@@ -241,7 +241,7 @@ export const meta = {
   name: "Jayden Shin",
   bio: "Incoming Software Engineering student at Waterloo. I build things, really love food, and somehow ended up at the UN. Looking to get into the start-up and tech space.",
   year: "2026",
-  email: "jaydenshin2008@gmail.com",
+  email: "j86shin@uwaterloo.ca",
   linkedin: "https://www.linkedin.com/in/jayden-shin/",
   github: "https://github.com/influxtion",
 };
