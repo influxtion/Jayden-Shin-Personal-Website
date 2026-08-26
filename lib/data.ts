@@ -150,7 +150,7 @@ export const projects: Project[] = [
     meta: "Pokémon Showdown battle AI · Python · 2026",
     href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI",
     bullets: [
-      "Reached a peak 2137 Elo — ranked #447 in the world on the competitive ladder, top 1% among hundreds of thousands of human players; drew 200K+ views across social media.",
+      "Reached a peak 2231 Elo — ranked #150 in the world on the competitive ladder, top 1% among hundreds of thousands of human players; drew 200K+ views across social media.",
       "Drives each turn with determinized Monte Carlo Tree Search to reason under hidden information and simultaneous moves: samples plausible opponent teams, simulates ~250K playouts per 120ms on a multithreaded Rust engine, and plays a mixed, unexploitable strategy.",
       "Deduces concealed opponent items and stats from in-game tells like move patterns and turn order, and trained a PyTorch value network (368 features, self-play labels, ~70% accuracy) to resolve near-ties.",
       "Validated every change through a loss-mining → root-cause → A/B self-play harness with Wilson confidence intervals, benchmarked against the strongest open-source bot.",
