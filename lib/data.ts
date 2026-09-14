@@ -5,6 +5,8 @@ export type Experience = {
   location: string;
   copy: string;
   href?: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 export type ProjectLink = {
@@ -45,34 +47,55 @@ export type FunFact = {
 
 export const experience: Experience[] = [
   {
+    year: "sep 2026 / now",
+    role: "Operations Intern",
+    org: "Marble Investments",
+    location: "",
+    copy: "Build Python screening tooling for a Waterloo campus-based startup, ingesting SEC XBRL and vendor-API fundamentals into a cached pandas store. Rank the universe on sector-neutral z-scores across valuation, quality, and leverage, with Piotroski F-Score filters cutting hundreds of tickers to a shortlist. Support day-to-day investment operations behind a $3M AUM portfolio compounding at a 63.5% CAGR since 2022.",
+    href: "https://www.linkedin.com/company/marble-investment",
+  },
+  {
+    year: "sep 2026 / now",
+    role: "Software Engineer",
+    org: "UW CUBE",
+    location: "",
+    copy: "Serve on the executive team of a University of Waterloo design incubator that pairs student project teams with mentors and workshops to ship digital products each term. Own the club's web presence end to end, translating Figma prototypes into responsive React/Next.js components across the site, application intake, and showcase pages. Run technical workshops and code reviews for project teams, unblocking designers on front-end implementation ahead of the end-of-term showcase.",
+    href: "https://ca.linkedin.com/company/uwcube",
+  },
+  {
     year: "apr 2026 / now",
     role: "Head of Technology Operations",
     org: "Paradym Private Capital",
     location: "",
-    copy: "Operate end-to-end technology operations for a private capital firm managing $70K+ in assets. Engineered the algorithmic and web-based systems behind 20%+ annualized returns, working alongside an Ivey AEO and Queen's Commerce executive team.",
+    copy: "Operate end-to-end technology for a student-run private equity firm managing $80K+ in assets. Engineer the algorithmic and web-based systems driving 61% annualized returns, working alongside an Ivey AEO and Queen's Commerce executive team.",
     href: "https://paradymprivatecapital.com/portfolio",
   },
+  {
+    year: "jun / oct 2024",
+    role: "Software Engineer Intern",
+    org: "RookBook Sports",
+    location: "",
+    copy: "Built and maintained the production site for a Southeast Asian football management agency in Flutter (Dart) under two engineers' mentorship. Composed a custom widget tree with LayoutBuilder breakpoints and reactive state over async roster and inquiry data.",
+  },
+];
+
+export const leadership: Experience[] = [
   {
     year: "apr 2025 / jun 2026",
     role: "Volunteer IT Director",
     org: "Adopt Our Community",
     location: "",
-    copy: "Built internal web platforms and automated data-routing systems across 10+ chapters. Coordinated with 19+ external partners — hospitals, First Nations, and city governments — to streamline logistics and drive $10K+ in fundraising outcomes.",
+    copy: "Built internal web platforms and automated data-routing systems across 10+ chapters. Coordinated with 19+ external partners, including hospitals, First Nations, and city governments, to streamline logistics and drive $10K+ in fundraising outcomes.",
     href: "https://www.adoptourcommunity.org/",
   },
   {
-    year: "mar / nov 2025",
-    role: "Web Developer",
-    org: "Free Your Mind Initiative",
+    year: "mar 2025",
+    role: "Youth Representative & Speaker",
+    org: "United Nations",
     location: "",
-    copy: "Designed and delivered a responsive CMS web platform within a 5-member team to modernize a non-profit's digital operations. Took over site administration after launch, maintaining continuous uptime and content accuracy.",
-  },
-  {
-    year: "jun / oct 2024",
-    role: "Software Development Intern",
-    org: "RookBook Sports",
-    location: "",
-    copy: "Built and maintained the production website for a Southeast Asian football management agency. Mentored by senior engineers, developing hands-on proficiency in Flutter-based full-stack development across front-end and back-end systems.",
+    copy: "One of ~100 under-18 delegates at the 2025 UN ECOSOC Youth Forum in New York City, among university students, PhD candidates, and ministers. Delivered a live, televised speech on the role of youth to 1,000+ attendees, including Council President Bob Rae. Attended invite-only side events hosted by the ILO, UNDP, and the Permanent Missions of China and Canada.",
+    image: "/un.webp",
+    imageAlt: "Jayden Shin speaking at the UN ECOSOC Youth Forum, 2025",
   },
 ];
 
@@ -212,22 +235,13 @@ export const projects: Project[] = [
 export const funFacts: FunFact[] = [
   {
     id: "01",
-    tag: "UN ECOSOC youth forum · 2025",
-    headline: "i ended up as a youth rep and speaker at the UN.",
-    detail:
-      "picked as one of ~100 under-18 delegates to the 2025 UN ECOSOC youth forum in nyc, somehow alongside university students, phd candidates, and ministers. gave a live televised speech to 1,000+ people, including council president bob rae, on why youth voices actually matter in global policy. also went to closed-door side events by orgs like the permanent missions of china and canada and the ILO. i do volunteer work and advocacy for education inequity.",
-    image: "/un.webp",
-    imageAlt: "Jayden Shin speaking at the UN ECOSOC Youth Forum, 2025",
-  },
-  {
-    id: "02",
     tag: "scholastic writing awards · flash fiction",
     headline: "i write sometimes.",
     detail:
       "gold at the scholastic writing and art awards for fiction. 1 of 100 nationally, and 1 of 7 gold recipients for flash fiction in all of canada. i had one of my short stories published in an anthology too.",
   },
   {
-    id: "03",
+    id: "02",
     tag: "food",
     headline: "i really like food.",
     detail:

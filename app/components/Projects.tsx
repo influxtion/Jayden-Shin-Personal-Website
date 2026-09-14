@@ -22,7 +22,7 @@ export function Projects() {
           className="tnum font-mono text-[56px] md:text-[72px] leading-none font-semibold"
           style={{ color: "var(--color-lime)" }}
         >
-          02
+          03
         </span>
         <span className="h-[2px] flex-1 bg-white/40 mb-3" />
         <span className="text-[14px] md:text-[16px] font-mono lowercase tracking-[0.1em] text-white font-semibold mb-3">

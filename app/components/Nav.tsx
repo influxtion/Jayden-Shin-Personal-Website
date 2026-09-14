@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 const SECTIONS = [
   { id: "top", num: "00", label: "intro" },
   { id: "experience", num: "01", label: "experience" },
-  { id: "projects", num: "02", label: "projects" },
-  { id: "fun", num: "03", label: "other stuff" },
+  { id: "leadership", num: "02", label: "leadership" },
+  { id: "projects", num: "03", label: "projects" },
+  { id: "fun", num: "04", label: "other stuff" },
 ];
 
 export function Nav() {
