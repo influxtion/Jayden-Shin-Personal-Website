@@ -43,6 +43,8 @@ export type FunFact = {
   image?: string;
   imageAlt?: string;
   tag?: string;
+  /** pixel icon for the dex sprite window */
+  icon?: "book" | "bowl";
 };
 
 export const experience: Experience[] = [
@@ -235,6 +237,7 @@ export const projects: Project[] = [
 export const funFacts: FunFact[] = [
   {
     id: "01",
+    icon: "book",
     tag: "scholastic writing awards · flash fiction",
     headline: "i write sometimes.",
     detail:
@@ -242,6 +245,7 @@ export const funFacts: FunFact[] = [
   },
   {
     id: "02",
+    icon: "bowl",
     tag: "food",
     headline: "i really like food.",
     detail:
@@ -249,7 +253,15 @@ export const funFacts: FunFact[] = [
   },
 ];
 
-export const skills = ["Java", "JavaScript", "TypeScript", "Dart", "Python", "C++"];
+/** each language gets a battle type for its badge colour */
+export const skills: { name: string; type: string }[] = [
+  { name: "Java", type: "fire" },
+  { name: "JavaScript", type: "electric" },
+  { name: "TypeScript", type: "water" },
+  { name: "Dart", type: "ice" },
+  { name: "Python", type: "grass" },
+  { name: "C++", type: "steel" },
+];
 
 export const meta = {
   name: "Jayden Shin",

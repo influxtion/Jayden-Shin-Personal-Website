@@ -2,40 +2,19 @@ import { meta } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer
-      className="px-8 md:px-16 lg:px-24 py-8 border-t-[6px] border-[color:var(--color-ink)]"
-      style={{ background: "var(--color-ink)" }}
-    >
-      <div className="font-mono text-[12px] md:text-[13px] lowercase tracking-wide text-white/70 flex flex-wrap gap-x-6 gap-y-2 items-center">
-        <span className="text-white font-semibold">{meta.name.toLowerCase()}</span>
-        <a
-          href={`mailto:${meta.email}`}
-          className="hover:text-[color:var(--color-lime)] transition-colors"
-        >
+    <footer className="mt-auto bg-[color:var(--color-ink)] px-5 sm:px-8 md:px-16 lg:px-24 py-7">
+      <div className="max-w-[1320px] mx-auto flex flex-wrap items-center gap-x-7 gap-y-3 font-pixel text-[13px] md:text-[14px] text-[color:var(--color-cream)]/70">
+        <span className="text-[color:var(--color-cream)]">{meta.name.toUpperCase()}</span>
+        <a href={`mailto:${meta.email}`} className="font-sans text-[13px] tracking-normal hover:text-[color:var(--color-gold)]">
           {meta.email}
         </a>
-        <a
-          href={meta.linkedin}
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-[color:var(--color-lime)] transition-colors"
-        >
+        <a href={meta.linkedin} target="_blank" rel="noreferrer" className="hover:text-[color:var(--color-gold)]">
           linkedin/jayden-shin
         </a>
-        <a
-          href={meta.github}
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-[color:var(--color-lime)] transition-colors"
-        >
+        <a href={meta.github} target="_blank" rel="noreferrer" className="hover:text-[color:var(--color-gold)]">
           github/influxtion
         </a>
-        <span
-          className="ml-auto tnum"
-          style={{ color: "var(--color-lime)" }}
-        >
-          {meta.year}
-        </span>
+        <span className="ml-auto tnum text-[color:var(--color-hp-hi)]">{meta.year}</span>
       </div>
     </footer>
   );

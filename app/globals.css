@@ -1,22 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #ffffff;
-  --color-ink: #0a0b12;
-  --color-muted: #6b6f80;
-  --color-line: #e6e8ef;
-  --color-cobalt: #2547e6;
-  --color-lime: #b8f23c;
+  --color-bg: #f6f4ea;
+  --color-paper: #ffffff;
+  --color-ink: #283040;
+  --color-muted: #6a7280;
+  --color-line: #d9d6c8;
+  --color-shade: #d8d2bc;
+
+  --color-red: #e0483c;
+  --color-red-dark: #a83028;
+  --color-teal: #3f9a8c;
+  --color-mint: #b4e6d6;
+  --color-gold: #f8c030;
+  --color-hp: #58d080;
+  --color-hp-hi: #88f8b0;
+  --color-exp: #48b0f0;
+
+  --color-night: #283048;
+  --color-night-2: #2d3650;
+  --color-cream: #f2efe2;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
-
-  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-pixel: var(--font-pixelify), ui-monospace, monospace;
 }
 
 :root {
   color-scheme: light;
+  /* one art-pixel of the UI chrome */
+  --px: 3px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --px: 2px;
+  }
 }
 
 html,
@@ -26,13 +45,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-feature-settings: "ss01", "ss02", "cv11";
-  font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
+  overflow-x: hidden;
 }
 
 *,
@@ -42,37 +63,220 @@ body {
 }
 
 ::selection {
-  background: var(--color-cobalt);
-  color: #fff;
+  background: var(--color-ink);
+  color: var(--color-gold);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* base resets live in a layer so Tailwind utilities can override them */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: var(--px) solid var(--color-red);
+    outline-offset: 2px;
+  }
 }
 
-/* Hairlines */
-.hairline {
-  background: var(--color-line);
-  height: 1px;
-  width: 100%;
-  transform-origin: left;
+/* ---------- type ---------- */
+
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.02em;
 }
 
-/* Tabular numerals helper */
+/* GBA text sits on a one-pixel drop shadow */
+.px-shadow {
+  text-shadow: 0.07em 0.07em 0 var(--color-shade);
+}
+.px-shadow-dark {
+  text-shadow: 0.07em 0.07em 0 #10141f;
+}
+
 .tnum {
   font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
+}
+
+/* ---------- 9-slice pixel frames ----------
+   Each frame is a 9x9 piece of pixel art; the 4px corners scale to 4 art-pixels. */
+
+.pk-box {
+  border-style: solid;
+  border-width: calc(var(--px) * 4);
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff' d='M1 2h7v5H1zM2 1h5v7H2z'/%3E%3Cpath fill='%23283040' d='M2 0h5v1H2zM2 8h5v1H2zM0 2h1v5H0zM8 2h1v5H8zM1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1zM7 7h1v1H7z'/%3E%3Cpath fill='%2370c2ae' d='M2 2h5v1H2zM2 6h5v1H2zM2 3h1v3H2zM6 3h1v3H6z'/%3E%3C/svg%3E")
+    4 fill / calc(var(--px) * 4) stretch;
+  background-clip: padding-box;
+  filter: drop-shadow(var(--px) var(--px) 0 rgb(40 48 64 / 0.22));
+}
+
+/* battle message box: red inner ring */
+.pk-box-red {
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff' d='M1 2h7v5H1zM2 1h5v7H2z'/%3E%3Cpath fill='%23283040' d='M2 0h5v1H2zM2 8h5v1H2zM0 2h1v5H0zM8 2h1v5H8zM1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1zM7 7h1v1H7z'/%3E%3Cpath fill='%23e0483c' d='M2 2h5v1H2zM2 6h5v1H2zM2 3h1v3H2zM6 3h1v3H6z'/%3E%3C/svg%3E");
+}
+
+/* image mount: ink outline, ink fill */
+.pk-box-ink {
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' shape-rendering='crispEdges'%3E%3Cpath fill='%23283040' d='M1 2h7v5H1zM2 1h5v7H2z'/%3E%3Cpath fill='%23161b26' d='M2 0h5v1H2zM2 8h5v1H2zM0 2h1v5H0zM8 2h1v5H8zM1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1zM7 7h1v1H7z'/%3E%3Cpath fill='%23f6f4ea' d='M2 2h5v1H2zM2 6h5v1H2zM2 3h1v3H2zM6 3h1v3H6z'/%3E%3C/svg%3E");
+}
+
+/* night panel used inside the projects section */
+.pk-box-night {
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' shape-rendering='crispEdges'%3E%3Cpath fill='%23182030' d='M1 2h7v5H1zM2 1h5v7H2z'/%3E%3Cpath fill='%23101420' d='M2 0h5v1H2zM2 8h5v1H2zM0 2h1v5H0zM8 2h1v5H8zM1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1zM7 7h1v1H7z'/%3E%3Cpath fill='%2388f8b0' d='M2 2h5v1H2zM2 6h5v1H2zM2 3h1v3H2zM6 3h1v3H6z'/%3E%3C/svg%3E");
+  filter: drop-shadow(var(--px) var(--px) 0 rgb(0 0 0 / 0.35));
+}
+
+/* dotted rule from the summary screens */
+.px-rule {
+  height: var(--px);
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0 calc(var(--px) * 2),
+    transparent calc(var(--px) * 2) calc(var(--px) * 4)
+  );
+}
+
+/* night-sky dither for the battle section */
+.px-dither {
+  background-color: var(--color-night);
+  background-image: conic-gradient(
+    var(--color-night-2) 25%,
+    transparent 0 50%,
+    var(--color-night-2) 0 75%,
+    transparent 0
+  );
+  background-size: calc(var(--px) * 2) calc(var(--px) * 2);
+}
+
+/* faint dot grid behind the hero */
+.px-grid {
+  background-image: radial-gradient(rgb(40 48 64 / 0.09) 1px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes pk-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.pk-blink {
+  animation: pk-blink 0.9s steps(1) infinite;
+}
+
+@keyframes pk-nudge {
+  50% {
+    transform: translateY(calc(var(--px) * 1));
+  }
+}
+.pk-nudge {
+  animation: pk-nudge 0.6s steps(1) infinite;
+}
+
+/* two-frame idle bob, like a sprite breathing */
+@keyframes pk-bob {
+  50% {
+    transform: translateY(calc(var(--px) * -1));
+  }
+}
+.pk-bob {
+  animation: pk-bob 1.4s steps(1) infinite;
+}
+
+/* hit shake on type badges */
+@keyframes pk-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(calc(var(--px) * -1));
+  }
+  75% {
+    transform: translateX(var(--px));
+  }
+}
+.pk-shake:hover {
+  animation: pk-shake 0.24s steps(1) 2;
+}
+
+/* ---------- battle intro (first visit per session) ---------- */
+
+.pk-intro-overlay {
+  display: none;
+}
+
+html.pk-intro .pk-intro-overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  animation: pk-intro-done 0s linear 1.15s forwards;
+}
+
+.pk-intro-overlay .flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  z-index: 1;
+  animation: pk-flash 0.36s steps(1) 0.05s;
+}
+
+.pk-intro-overlay .bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100% / 8 + 1px);
+  background: var(--color-ink);
+  animation: pk-bar-left 0.42s steps(10) forwards;
+}
+.pk-intro-overlay .bar:nth-child(odd) {
+  animation-name: pk-bar-right;
+}
+
+@keyframes pk-flash {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes pk-bar-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes pk-bar-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes pk-intro-done {
+  to {
+    visibility: hidden;
+  }
 }
 
 /* Honor reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.pk-intro .pk-intro-overlay {
+    display: none;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
   }
 }

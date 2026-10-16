@@ -1,11 +1,12 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { meta } from "@/lib/data";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { Dialogue } from "./Dialogue";
+import { Cursor, HPBar, Platform, TypeBadge, introDelay, stepped } from "./pixel";
 
 function useClock() {
   const [time, setTime] = useState<string>("");
@@ -27,202 +28,183 @@ function useClock() {
 
 const NAME = "JAYDEN SHIN";
 
+const COMMANDS = [
+  { label: "LINKEDIN", href: meta.linkedin, external: true },
+  { label: "GITHUB", href: meta.github, external: true },
+  { label: "EMAIL", href: `mailto:${meta.email}`, external: false },
+  { label: "RUN", href: "/experience", external: false },
+];
+
+function CommandMenu({ delay }: { delay: number }) {
+  const [sel, setSel] = useState(0);
+  const refs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  // Arrow keys move around the 2x2 grid, like the real thing.
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    const move: Record<string, number> = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -2, ArrowDown: 2 };
+    if (!(e.key in move)) return;
+    e.preventDefault();
+    const next = (sel + move[e.key] + 4) % 4;
+    setSel(next);
+    refs.current[next]?.focus();
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.01, delay }}
+      className="pk-box h-full px-3 py-2 md:px-4 md:py-3"
+    >
+      <ul className="grid h-full grid-cols-2 content-center gap-x-2 gap-y-1" onKeyDown={onKeyDown}>
+        {COMMANDS.map((c, i) => {
+          const body = (
+            <>
+              <Cursor className={i === sel ? "opacity-100" : "opacity-0"} />
+              <span className="px-shadow">{c.label}</span>
+            </>
+          );
+          const cls =
+            "flex items-center gap-2 py-1.5 font-pixel text-[17px] md:text-[20px] leading-none text-[color:var(--color-ink)] focus-visible:outline-none";
+          const handlers = {
+            onMouseEnter: () => setSel(i),
+            onFocus: () => setSel(i),
+            ref: (el: HTMLAnchorElement | null) => {
+              refs.current[i] = el;
+            },
+          };
+          return (
+            <li key={c.label}>
+              {c.external ? (
+                <a href={c.href} target="_blank" rel="noreferrer" className={cls} {...handlers}>
+                  {body}
+                </a>
+              ) : c.href.startsWith("/") ? (
+                <Link href={c.href} className={cls} {...handlers}>
+                  {body}
+                </Link>
+              ) : (
+                <a href={c.href} className={cls} {...handlers}>
+                  {body}
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </motion.div>
+  );
+}
+
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  // Portrait gently parallaxes and fades as the hero scrolls away
-  const portraitScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const portraitY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-  const portraitOpacity = useTransform(scrollYProgress, [0.5, 1], [1, 0]);
-
+  const [d] = useState(introDelay);
   const clock = useClock();
 
   return (
-    <section
-      ref={ref}
-      id="top"
-      className="relative min-h-[100svh] px-8 md:px-16 lg:px-24 pt-20 pb-12 flex flex-col"
-    >
-      <div className="grid grid-cols-12 gap-8 flex-1 items-center">
-        {/* Name */}
-        <div className="col-span-12 md:col-span-7 flex flex-col justify-center">
+    <section className="px-5 sm:px-8 md:px-16 lg:px-24 pt-6 md:pt-4 pb-14 max-w-[1320px] mx-auto">
+      <div className="grid grid-cols-12 gap-x-8 gap-y-10 items-end">
+        {/* Opponent side: name + info box */}
+        <div className="col-span-12 md:col-span-7 order-2 md:order-1">
           <h1
             aria-label={meta.name}
-            className="font-sans font-semibold leading-[1.02] tracking-[-0.045em] text-[16vw] md:text-[10vw] lg:text-[8.4vw] text-[color:var(--color-ink)]"
+            className="font-pixel font-bold px-shadow leading-[0.88] text-[17vw] md:text-[8.6vw] xl:text-[124px] text-[color:var(--color-ink)] tracking-[-0.01em]"
           >
             {NAME.split(" ").map((word, wi) => (
-              <span key={wi} className="inline-block mr-[0.15em] align-top">
-                {word.split("").map((ch, i) => {
-                  const delay = 0.1 + (wi * 5 + i) * 0.04;
-                  return (
-                    <span
-                      key={i}
-                      aria-hidden
-                      className="inline-block overflow-hidden align-top pb-[0.12em]"
-                    >
-                      <motion.span
-                        className="inline-block"
-                        initial={{ y: "105%" }}
-                        animate={{ y: "0%" }}
-                        transition={{ duration: 0.9, delay, ease: EASE }}
-                      >
-                        {ch}
-                      </motion.span>
-                    </span>
-                  );
-                })}
+              <span key={wi} className="block">
+                {word.split("").map((ch, i) => (
+                  <motion.span
+                    key={i}
+                    aria-hidden
+                    className="inline-block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.01, delay: d + 0.5 + (wi * 6 + i) * 0.045 }}
+                  >
+                    {ch}
+                  </motion.span>
+                ))}
               </span>
             ))}
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9, ease: EASE }}
-            className="mt-8 max-w-2xl text-[20px] md:text-[22px] text-[color:var(--color-ink)] leading-snug"
-          >
-            {(() => {
-              const parts = meta.bio.split("Waterloo");
-              return (
-                <>
-                  {parts[0]}
-                  {parts.length > 1 ? (
-                    <>
-                      <span className="relative inline-block">
-                        <span className="relative z-10">Waterloo</span>
-                        <motion.span
-                          aria-hidden
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          transition={{ duration: 0.6, delay: 1.4, ease: EASE }}
-                          style={{
-                            transformOrigin: "left center",
-                            position: "absolute",
-                            left: 0,
-                            right: 0,
-                            bottom: 2,
-                            height: 10,
-                            background: "var(--color-lime)",
-                            zIndex: 0,
-                          }}
-                        />
-                      </span>
-                      {parts.slice(1).join("Waterloo")}
-                    </>
-                  ) : null}
-                </>
-              );
-            })()}
-          </motion.p>
-
+          {/* Info box slides in from the left, like the opponent's */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.3, ease: EASE }}
-            className="mt-8 flex flex-wrap items-center gap-3 font-mono text-[12px] lowercase tracking-wide"
+            initial={{ x: -520 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.55, delay: d + 0.15, ease: stepped(11) }}
+            className="pk-box mt-8 w-full max-w-[440px] px-4 pt-3 pb-4"
           >
-            <a
-              href={meta.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 px-3 py-1.5 border-2 border-[color:var(--color-ink)] bg-white hover:bg-[color:var(--color-ink)] hover:text-white transition-colors duration-300 font-semibold"
-            >
-              linkedin
-              <span
-                aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
-              >
-                ↗
+            <div className="font-pixel text-[17px] md:text-[19px] leading-none">
+              <span className="px-shadow">SOFTWARE ENG.</span>
+            </div>
+            <HPBar value={1} delay={d + 0.9} className="mt-3" />
+            <div className="mt-3 flex items-center gap-2">
+              <TypeBadge type="fire">builder</TypeBadge>
+              <TypeBadge type="psychic">speaker</TypeBadge>
+              <span className="ml-auto font-pixel text-[12px] text-[color:var(--color-muted)]">
+                UWATERLOO
               </span>
-            </a>
-            <a
-              href={meta.github}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: "var(--color-lime)" }}
-              className="group inline-flex items-center gap-2 px-3 py-1.5 border-2 border-[color:var(--color-ink)] bg-[color:var(--color-ink)] hover:bg-[color:var(--color-cobalt)] hover:border-[color:var(--color-cobalt)] transition-colors duration-300 font-semibold"
-            >
-              github
-              <span
-                aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
-              >
-                ↗
-              </span>
-            </a>
-            <a
-              href={`mailto:${meta.email}`}
-              className="group inline-flex items-center gap-2 px-3 py-1.5 text-[color:var(--color-ink)] hover:text-[color:var(--color-cobalt)] transition-colors duration-300 font-semibold"
-            >
-              email
-              <span
-                aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
-              >
-                ↗
-              </span>
-            </a>
+            </div>
           </motion.div>
         </div>
 
-        {/* Portrait */}
+        {/* Sprite on its platform slides in from the right */}
         <motion.div
-          style={{
-            scale: portraitScale,
-            y: portraitY,
-            opacity: portraitOpacity,
-            transformOrigin: "center",
-          }}
-          className="col-span-12 md:col-span-5 md:justify-self-end w-full md:w-[340px] lg:w-[400px]"
+          initial={{ x: 640 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.6, delay: d + 0.1, ease: stepped(12) }}
+          className="col-span-12 md:col-span-5 order-1 md:order-2 relative flex justify-center md:justify-end pb-[12%]"
         >
-          <motion.div
-            initial={{ clipPath: "inset(100% 0 0 0)" }}
-            animate={{ clipPath: "inset(0% 0 0 0)" }}
-            transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-            className="relative aspect-[3/4] w-full overflow-hidden border-2 border-[color:var(--color-ink)]"
-          >
-            <Image
-              src="/headshot_2_optimized_1000.jpg"
-              alt="Portrait of Jayden Shin"
-              fill
-              priority
-              sizes="(min-width: 1024px) 400px, (min-width: 768px) 340px, 100vw"
-              style={{ objectFit: "cover", objectPosition: "center 25%" }}
-            />
-            {/* cobalt corner tick */}
-            <span
-              aria-hidden
-              className="absolute top-0 left-0 w-8 h-2"
-              style={{ background: "var(--color-cobalt)" }}
-            />
-            <span
-              aria-hidden
-              className="absolute top-0 left-0 w-2 h-8"
-              style={{ background: "var(--color-cobalt)" }}
-            />
-          </motion.div>
+          <div className="relative w-[230px] sm:w-[280px] lg:w-[340px]">
+            <Platform className="absolute left-1/2 bottom-0 w-[150%] -translate-x-1/2 translate-y-1/2" />
+            <div className="pk-bob relative">
+              <div className="pk-box pk-box-ink">
+                <div className="relative aspect-[3/4] w-full overflow-hidden">
+                  <Image
+                    src="/headshot_2_optimized_1000.jpg"
+                    alt="Portrait of Jayden Shin"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 340px, (min-width: 640px) 280px, 230px"
+                    style={{ objectFit: "cover", objectPosition: "center 22%" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
 
-      {/* Meta row */}
+      {/* Bottom bar: message box + command menu */}
+      <div className="mt-12 md:mt-14 grid grid-cols-12 gap-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.01, delay: d + 0.7 }}
+          className="pk-box pk-box-red col-span-12 lg:col-span-8 px-5 py-4 md:px-7 md:py-5 cursor-pointer"
+        >
+          <Dialogue
+            lines={["JAYDEN SHIN would like to battle!", meta.bio]}
+            delay={d + 1.0}
+            className="font-pixel text-[17px] md:text-[21px] leading-[1.5] text-[color:var(--color-ink)] px-shadow pr-6"
+          />
+        </motion.div>
+        <div className="col-span-12 lg:col-span-4">
+          <CommandMenu delay={d + 0.8} />
+        </div>
+      </div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 1.6, ease: EASE }}
-        className="mt-16 pt-6 border-t-2 border-[color:var(--color-ink)] flex items-end justify-between text-[13px] font-mono lowercase tracking-wide"
+        transition={{ duration: 0.01, delay: d + 1.2 }}
+        className="mt-6 flex items-center justify-between font-pixel text-[13px] text-[color:var(--color-muted)]"
       >
-        <span className="text-[color:var(--color-cobalt)] font-semibold">
-          jayden shin · {meta.year}
+        <span>
+          PLAYER <span className="text-[color:var(--color-ink)]">JAYDEN</span>
         </span>
-        <span
-          className="tnum text-[color:var(--color-ink)]"
-          suppressHydrationWarning
-        >
-          {clock || "--:--:--"} et
+        <span className="tnum" suppressHydrationWarning>
+          TIME <span className="text-[color:var(--color-ink)]">{clock || "--:--:--"}</span> ET
         </span>
       </motion.div>
     </section>
