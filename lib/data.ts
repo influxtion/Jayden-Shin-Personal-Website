@@ -65,14 +65,6 @@ export const experience: Experience[] = [
     href: "https://ca.linkedin.com/company/uwcube",
   },
   {
-    year: "apr 2026 / now",
-    role: "Head of Technology Operations",
-    org: "Paradym Private Capital",
-    location: "",
-    copy: "Operate end-to-end technology for a student-run private equity firm managing $80K+ in assets. Engineer the algorithmic and web-based systems driving 61% annualized returns, working alongside an Ivey AEO and Queen's Commerce executive team.",
-    href: "https://paradymprivatecapital.com/portfolio",
-  },
-  {
     year: "jun / oct 2024",
     role: "Software Engineer Intern",
     org: "RookBook Sports",
@@ -128,6 +120,24 @@ export const projectsCasual: Project[] = [
     },
   },
   {
+    title: "Calmpost",
+    meta: "Smart compost bin + Android app · Flutter · Python · 2026",
+    href: "https://github.com/henryc08/Calmpost",
+    bullets: [
+      "won the city of schools track at hack the valley (uoft). it's a compost bin with sensors in it and an android app that tells you what it needs. and yes, it gamifies composting.",
+      "an arduino streams moisture at two depths, temperature and co₂ about once a second into a fastapi backend on tiger data, which powers the live charts and the friend leaderboards.",
+      "a webcam watches what you drop in and gemini figures out what it is. a fixed rules engine makes every call, so if you ask trunc (the assistant) 'should i add apples?', the answer depends on how your bin looks right now.",
+      "xp, streaks, crates and collectible seeds for looking after it, plus a toronto sorting guide built on the city's waste wizard open data.",
+    ],
+    links: [{ label: "github", href: "https://github.com/henryc08/Calmpost" }],
+    preview: {
+      src: "/calmpost-app.webp",
+      alt: "Calmpost app screens: live two-probe moisture sensors, Trunc's advice for the bin right now, and the confirmed compost inventory",
+      href: "https://github.com/henryc08/Calmpost",
+      aspect: "16 / 10",
+    },
+  },
+  {
     title: "Last Tour",
     meta: "Chrome extension · JavaScript · 2026",
     href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension",
@@ -147,24 +157,6 @@ export const projectsCasual: Project[] = [
       alt: "The Last Tour new tab page: a procedural pixel-art city at night, with a clock and the Kettenkrad",
       href: "https://chromewebstore.google.com/detail/last-tour-shoujo-shuumats/fpfajepgnbicdpfddfjdicneoombjgmp",
       aspect: "16 / 10",
-    },
-  },
-  {
-    title: "Progressive Difficulty Scaler",
-    meta: "Minecraft Fabric mod · Java · 2026",
-    href: "https://github.com/influxtion/Progressive-Difficulty-Scaler",
-    bullets: [
-      "a minecraft mod that quietly scores how far you've progressed — gear, dimensions, advancements, how much netherite you've dug up. 400 downloads.",
-      "scales every mob's health and damage to match. ramps hard mid-game then eases off once you're geared.",
-    ],
-    links: [
-      { label: "curseforge", href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler" },
-      { label: "github", href: "https://github.com/influxtion/Progressive-Difficulty-Scaler" },
-    ],
-    preview: {
-      src: "/pds-curseforge.webp",
-      alt: "Progressive Difficulty Scaler on CurseForge",
-      href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler",
     },
   },
 ];
@@ -193,6 +185,24 @@ export const projects: Project[] = [
     },
   },
   {
+    title: "Calmpost",
+    meta: "Smart compost bin + Android app · Flutter · Python · 2026",
+    href: "https://github.com/henryc08/Calmpost",
+    bullets: [
+      "Won the City of Schools track at Hack the Valley (UofT) with a sensor-instrumented home compost bin and a gamified Flutter app that turns live bin telemetry into plain-language care advice.",
+      "Engineered the full telemetry pipeline: an Arduino UNO R4 streams two-layer moisture, compost temperature and CO₂ at ~1 Hz through a serial bridge into a FastAPI backend on a Tiger Data (TimescaleDB) hypertable, with continuous aggregates driving charts and time-window leaderboards computed over an append-only XP ledger.",
+      "Paired OpenCV drop detection with Gemini vision to identify scraps as they go in, behind a deterministic rules engine that owns every verdict, so the same scrap gets a different answer depending on the bin's current readings and every AI response has a rule-based fallback.",
+      "Kept users coming back with XP, streaks, loot crates, collectible seeds and private leagues, and shipped an offline Toronto sorting guide curated from the City's 2,206-record Waste Wizard open dataset to target the city's Green Bin diversion gap.",
+    ],
+    links: [{ label: "github", href: "https://github.com/henryc08/Calmpost" }],
+    preview: {
+      src: "/calmpost-app.webp",
+      alt: "Calmpost app screens: live two-probe moisture sensors, Trunc's advice for the bin right now, and the confirmed compost inventory",
+      href: "https://github.com/henryc08/Calmpost",
+      aspect: "16 / 10",
+    },
+  },
+  {
     title: "Last Tour",
     meta: "Chrome extension · JavaScript · 2026",
     href: "https://github.com/influxtion/Girls-Last-Tour-New-Tab-Extension",
@@ -212,24 +222,6 @@ export const projects: Project[] = [
       alt: "The Last Tour new tab page: a procedural pixel-art city at night, with a clock and the Kettenkrad",
       href: "https://chromewebstore.google.com/detail/last-tour-shoujo-shuumats/fpfajepgnbicdpfddfjdicneoombjgmp",
       aspect: "16 / 10",
-    },
-  },
-  {
-    title: "Progressive Difficulty Scaler",
-    meta: "Minecraft Fabric mod · Java · 2026",
-    href: "https://github.com/influxtion/Progressive-Difficulty-Scaler",
-    bullets: [
-      "Built a server-side Fabric mod (400 downloads, MC 1.21.1) that hooks entity-load events to rescale each mob's max-health and attack-damage attributes on spawn against a server-wide progression average.",
-      "Derives a hidden 0–100 progression score per player from gear, dimensions, advancements, and log-scaled diamond/netherite mining, mapped through a normalized logistic S-curve so difficulty ramps mid-to-late game and eases at the top.",
-    ],
-    links: [
-      { label: "curseforge", href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler" },
-      { label: "github", href: "https://github.com/influxtion/Progressive-Difficulty-Scaler" },
-    ],
-    preview: {
-      src: "/pds-curseforge.webp",
-      alt: "Progressive Difficulty Scaler on CurseForge",
-      href: "https://www.curseforge.com/minecraft/mc-mods/progressive-difficulty-scaler",
     },
   },
 ];

@@ -20,7 +20,7 @@ export function SectionHeader({ num, title, flavor, dark = false }: SectionHeade
           initial={{ clipPath: "inset(0 100% 0 0)" }}
           animate={{ clipPath: "inset(0 0% 0 0)" }}
           transition={{ duration: 0.5, delay: 0.15, ease: stepped(title.length) }}
-          className={`font-pixel uppercase font-semibold leading-[0.85] text-[44px] sm:text-[64px] md:text-[84px] pb-[0.08em] ${
+          className={`font-pixel uppercase font-semibold leading-[0.85] text-[clamp(30px,11.5vw,44px)] sm:text-[64px] md:text-[84px] pb-[0.08em] ${
             dark ? "px-shadow-dark" : "px-shadow"
           }`}
         >

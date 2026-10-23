@@ -18,7 +18,7 @@ export function Timeline({ items, children }: TimelineProps) {
             as="li"
             key={i}
             delay={0.25 + i * 0.08}
-            className="group relative grid grid-cols-12 gap-x-8 gap-y-3 py-10 md:py-12"
+            className="group relative grid grid-cols-12 gap-x-0 md:gap-x-8 gap-y-3 py-10 md:py-12"
           >
             {i > 0 ? (
               <span aria-hidden className="px-rule absolute inset-x-0 top-0 text-[color:var(--color-ink)] opacity-25" />

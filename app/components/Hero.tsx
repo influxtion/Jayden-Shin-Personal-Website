@@ -101,8 +101,8 @@ export function Hero() {
   const clock = useClock();
 
   return (
-    <section className="px-5 sm:px-8 md:px-16 lg:px-24 pt-6 md:pt-4 pb-14 max-w-[1320px] mx-auto">
-      <div className="grid grid-cols-12 gap-x-8 gap-y-10 items-end">
+    <section className="overflow-x-clip px-5 sm:px-8 md:px-16 lg:px-24 pt-6 md:pt-4 pb-14 max-w-[1320px] mx-auto">
+      <div className="grid grid-cols-12 gap-x-0 md:gap-x-8 gap-y-10 items-end">
         {/* Opponent side: name + info box */}
         <div className="col-span-12 md:col-span-7 order-2 md:order-1">
           <h1
@@ -176,7 +176,7 @@ export function Hero() {
       </div>
 
       {/* Bottom bar: message box + command menu */}
-      <div className="mt-12 md:mt-14 grid grid-cols-12 gap-4">
+      <div className="mt-12 md:mt-14 grid grid-cols-12 gap-y-4 lg:gap-x-4">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

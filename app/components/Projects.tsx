@@ -18,7 +18,7 @@ export function Projects() {
                 as="li"
                 key={p.title}
                 delay={0.25 + i * 0.08}
-                className="group relative grid grid-cols-12 gap-x-10 gap-y-8 py-12 md:py-14 items-start"
+                className="group relative grid grid-cols-12 gap-x-0 lg:gap-x-10 gap-y-8 py-12 md:py-14 items-start"
               >
                 {i > 0 ? (
                   <span aria-hidden className="px-rule absolute inset-x-0 top-0 text-[color:var(--color-cream)] opacity-20" />
@@ -29,7 +29,7 @@ export function Projects() {
                     {p.meta}
                   </p>
                   <a href={p.href} target="_blank" rel="noreferrer" className="group/title mt-3 inline-block">
-                    <h2 className="font-pixel font-semibold px-shadow-dark text-[36px] sm:text-[46px] md:text-[56px] leading-[0.95] text-[color:var(--color-cream)] group-hover/title:text-[color:var(--color-gold)]">
+                    <h2 className="font-pixel font-semibold px-shadow-dark text-[clamp(30px,10vw,36px)] sm:text-[46px] md:text-[56px] leading-[0.95] text-[color:var(--color-cream)] group-hover/title:text-[color:var(--color-gold)]">
                       {p.title}
                     </h2>
                   </a>

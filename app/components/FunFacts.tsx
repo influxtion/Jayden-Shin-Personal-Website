@@ -55,7 +55,7 @@ export function FunFacts() {
               as="li"
               key={f.id}
               delay={0.25 + i * 0.1}
-              className="grid grid-cols-12 gap-x-10 gap-y-6 items-start"
+              className="grid grid-cols-12 gap-x-0 sm:gap-x-8 md:gap-x-10 gap-y-6 items-start"
             >
               {/* Dex sprite window */}
               <div className="col-span-12 sm:col-span-4 md:col-span-3">
