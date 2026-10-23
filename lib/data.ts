@@ -99,7 +99,7 @@ export const leadership: Experience[] = [
 export const projectsCasual: Project[] = [
   {
     title: "Laplace",
-    meta: "Pokémon Showdown battle AI · Python · 2026",
+    meta: "Competitive Pokémon Bot · Python · 2026",
     href: "https://github.com/influxtion/Laplace-Pokemon-Showdown-AI",
     bullets: [
       "hit a peak 2137 elo — #447 in the world, top 1% of hundreds of thousands of human players. 200k+ views across social media.",
@@ -185,7 +185,7 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Calmpost",
+    title: "Calmpost (Hack the Valley Winner)",
     meta: "Smart compost bin + Android app · Flutter · Python · 2026",
     href: "https://github.com/henryc08/Calmpost",
     bullets: [
