@@ -175,6 +175,20 @@ body {
   animation: pk-nudge 0.6s steps(1) infinite;
 }
 
+/* arrow buttons: the cursor taps toward where it points */
+@keyframes pk-nudge-x {
+  50% {
+    transform: translateX(calc(var(--px) * 1));
+  }
+}
+.group:hover .pk-nudge-x,
+.group:focus-visible .pk-nudge-x {
+  animation: pk-nudge-x 0.6s steps(1) infinite;
+}
+.group:active .pk-nudge-x {
+  transform: translateX(calc(var(--px) * 2));
+}
+
 /* two-frame idle bob, like a sprite breathing */
 @keyframes pk-bob {
   50% {
